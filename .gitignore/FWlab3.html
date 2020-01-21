@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- saved from url=(0125)https://peppel-g.github.io/course-material/courses/web-development-advanced-concepts/static-files/lab-03-form-validation.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lab 3 - Validating Forms</title>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event)
+		{
+			const createAccount = document.getElementById("createAccountForm")
+
+			createAccount.addEventListener("submit", function(event)
+			{
+				
+
+				paragraph = document.createElement("p")
+
+				const email = document.getElementById("email").value
+				const password = document.getElementById("password1").value
+				const passwordConfirmation = document.getElementById("password2").value
+
+				if(!(email.includes('@'))){
+					event.preventDefault()
+					paragraph.innerText = "Must enter an email"
+					document.querySelector("body").appendChild(paragraph)
+				}
+				else if(password.length < 8){
+					event.preventDefault()
+					paragraph.innerText = "Password must contain at least 8 characters"
+					document.querySelector("body").appendChild(paragraph)
+				}
+				else if(passwordConfirmation != password){
+					event.preventDefault()
+					paragraph.innerText = "Passwords are not matching"
+					document.querySelector("body").appendChild(paragraph)
+				}
+			})
+		})
+
+
+		// Write your JavaScript code here.
+		// Display the error messages wherever you think it makes most sense.
+		
+	</script>
+</head>
+<body>
+	
+	<h1>Create account</h1>
+	
+	<form id="createAccountForm" method="POST">
+		
+		<div>Email: <input type="text" name="email" id="email"></div>
+		
+		<div>Password: <input type="password" name="password1" id="password1"></div>
+		
+		<div>Password (repeat): <input type="password" name="password2" id="password2"></div>
+		
+		<input type="submit" value="Create account">
+		
+	</form>
+	
+
+</body></html>
